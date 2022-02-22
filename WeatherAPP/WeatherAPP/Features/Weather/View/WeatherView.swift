@@ -1,13 +1,8 @@
-//
-//  ContentView.swift
-//  WeatherAPP
-//
-//  Created by Freak on 21.02.2022.
-//
-
+import CoreLocation
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherView: View {
+    var locationRequest = LocationViewModel()
     var body: some View {
         Text("Hello, world!")
             .padding()
@@ -16,6 +11,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WeatherView()
     }
 }
