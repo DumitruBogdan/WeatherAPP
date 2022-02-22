@@ -2,11 +2,15 @@ import CoreLocation
 import SwiftUI
 
 struct WeatherView: View {
-    @StateObject var locationRequest = LocationViewModel()
+    @StateObject var viewModel = LocationViewModel()
+    
     var body: some View {
         VStack {
-            Text(locationRequest.location?.coordinate.latitude.description ?? "Not a location")
-            Text(locationRequest.location?.coordinate.longitude.description ?? "Not a location")
+            Text(viewModel.cityName)
+                .font(.largeTitle)
+                .padding()
+            Text(viewModel.latitude)
+            Text(viewModel.longitude)
         }
     }
 }
