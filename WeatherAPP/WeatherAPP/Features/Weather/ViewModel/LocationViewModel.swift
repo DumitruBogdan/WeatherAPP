@@ -3,7 +3,7 @@ import Foundation
 
 class LocationViewModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     private var locationManager = CLLocationManager()
-    
+
     @Published var cityName: String = ""
     @Published var location: CLLocation?
 

@@ -2,9 +2,13 @@ import SwiftUI
 
 struct WeatherView: View {
     @StateObject var viewModel = LocationViewModel()
-    
+    @StateObject var apolloService = ApolloService()
+
     var body: some View {
         VStack {
+            Text("Your city is")
+                .font(.largeTitle)
+                .padding()
             Text(viewModel.cityName)
                 .font(.largeTitle)
                 .padding()
