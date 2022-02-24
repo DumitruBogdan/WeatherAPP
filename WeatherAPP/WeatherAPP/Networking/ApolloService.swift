@@ -11,11 +11,6 @@ class ApolloService: ObservableObject {
         ApolloService.shared.apollo.fetch(query: WeatherQuery(name: cityName)) { result in
             switch result {
             case let .success(graphlQLResult):
-//                DispatchQueue.main.async {
-//                    if (graphlQLResult.data?.getCityByName?.weather?.summary?.description) != nil {
-//                        self.description = (graphlQLResult.data?.getCityByName?.weather?.summary?.description)!
-//                    }
-//                }
                 guard let result = graphlQLResult.data?.getCityByName?.weather else { return }
                 var summaryObject = Summary(title: result.summary?.title, description: result.summary?.description, icon: result.summary?.icon)
                 var temperatureObject = Temperature(actual: result.temperature?.actual, feelsLike: result.temperature?.feelsLike, min: result.temperature?.min, max: result.temperature?.max)

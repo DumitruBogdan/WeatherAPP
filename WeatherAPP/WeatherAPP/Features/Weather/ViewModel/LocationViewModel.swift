@@ -6,16 +6,7 @@ class LocationViewModel: NSObject, CLLocationManagerDelegate, ObservableObject {
 
     @Published var cityName: String = ""
     @Published var location: CLLocation?
-
-    var latitude: String {
-        guard let location = location else { return "No location" }
-        return location.coordinate.latitude.description
-    }
-
-    var longitude: String {
-        guard let location = location else { return "No location" }
-        return location.coordinate.longitude.description
-    }
+    @Published var weather: Weather?
 
     override init() {
         super.init()
@@ -34,6 +25,14 @@ class LocationViewModel: NSObject, CLLocationManagerDelegate, ObservableObject {
                   let cityName = placemark.locality else { return }
 
             self.cityName = cityName
+            ApolloService.shared.getWeatherByCityName(cityName: cityName) { result in
+                switch result {
+                case let .success(value):
+                    self.weather = value
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 
